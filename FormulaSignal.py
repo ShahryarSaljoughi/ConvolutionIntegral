@@ -9,5 +9,5 @@ class FormulaSignal(Signal):
         self.formula = formula
 
     def get_value_at(self, index):
-        result = eval(self.formula.format(x0=index))
+        result = eval(self.formula.format(x0=index)) if self.high_bound > index > self.low_bound else 0
         return result
