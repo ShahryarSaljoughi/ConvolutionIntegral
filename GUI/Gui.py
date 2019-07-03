@@ -24,6 +24,7 @@ class MainWindow:
         self.output_signal: TimeContinuesNumericSignal = None  # output(t)=h(t)*x(t)
 
         self.fig = Figure(figsize=(5, 4))
+        self.canvas = None
         # self.x_input = None
         # self.x_from = None
         # self.x_to = None
@@ -84,6 +85,7 @@ class MainWindow:
         canvas = FigureCanvasTkAgg(self.fig, master=output_frame)
         canvas.draw()
         canvas.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
+        self.canvas = canvas
 
     def create_signal_objects(self, x: Entry, h: Entry, x_from: Entry, h_from: Entry, x_to: Entry, h_to: Entry):
         x_formula: str = x.get().replace('t', '{x0}')
@@ -101,6 +103,7 @@ class MainWindow:
         calculator = ConvolutionIntegralCalculator(dt=0.05)
         self.output_signal = calculator.calculate(self.x_signal, self.h_signal)
         self.update_output_signal_values()
+        self.canvas.draw()
 
     def start(self):
         self.window.mainloop()
@@ -113,6 +116,6 @@ class MainWindow:
                 [point[0] for point in self.output_signal.values]
             )
 
-
-
+    def redraw_canvas(self):
+        self.canvas.draw()
 
