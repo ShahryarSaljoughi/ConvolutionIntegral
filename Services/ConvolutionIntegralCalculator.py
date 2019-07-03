@@ -1,4 +1,4 @@
-from Signal import Signal
+from Entities.TimeContinuesNumericSignal import TimeContinuesNumericSignal
 import numpy as np
 
 
@@ -7,7 +7,7 @@ class ConvolutionIntegralCalculator:
     def __init__(self, dt=0.001):
         self.dt = dt
 
-    def calculate(self, f, g):
+    def calculate(self, f, g) -> TimeContinuesNumericSignal:
         """
 
         :param f: first Signal of type FormulaSignal
@@ -22,7 +22,7 @@ class ConvolutionIntegralCalculator:
                 , t
             ) for t in np.arange(output_low_bound, output_high_bound, self.dt)
         ]
-        return signal_values
+        return TimeContinuesNumericSignal(low_bound=output_low_bound, high_bound=output_high_bound, values=signal_values)
 
     def calculate_integral_at(self, f, g, t):
         current_element_position = f.low_bound

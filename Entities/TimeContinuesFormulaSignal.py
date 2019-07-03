@@ -1,7 +1,7 @@
-from Signal import Signal
+from Entities.Signal import Signal
+from math import *
 
-
-class FormulaSignal(Signal):
+class TimeContinuesFormulaSignal(Signal):
 
     def __init__(self, low_bound, high_bound, formula="(x0)**2"):
         self.low_bound = low_bound
