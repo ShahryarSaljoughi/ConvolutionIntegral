@@ -11,6 +11,7 @@ from Services.ConvolutionIntegralCalculator import  ConvolutionIntegralCalculato
 
 matplotlib.use("TkAgg")
 
+
 class MainWindow:
 
     def __init__(self):
@@ -24,6 +25,7 @@ class MainWindow:
         self.output_signal: TimeContinuesNumericSignal = None  # output(t)=h(t)*x(t)
 
         self.fig = Figure(figsize=(5, 4))
+
         self.canvas = None
         # self.x_input = None
         # self.x_from = None
@@ -86,6 +88,8 @@ class MainWindow:
         canvas.draw()
         canvas.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
         self.canvas = canvas
+        toolbar = NavigationToolbar2Tk(self.canvas, output_frame)
+        toolbar.update()
 
     def create_signal_objects(self, x: Entry, h: Entry, x_from: Entry, h_from: Entry, x_to: Entry, h_to: Entry):
         x_formula: str = x.get().replace('t', '{x0}')
