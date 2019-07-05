@@ -14,7 +14,7 @@ class ConvolutionIntegralCalculator:
         :param g: second Signal of type NumericSignal
         :return: NumericSignal
         """
-        output_low_bound = min(f.low_bound, g.low_bound)
+        output_low_bound = f.low_bound + g.low_bound   # min(f.low_bound, g.low_bound)
         output_high_bound = f.high_bound + g.high_bound
         signal_values = [
             (

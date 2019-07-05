@@ -1,6 +1,7 @@
 from Entities.Signal import Signal
 from math import *
 
+
 class TimeContinuesFormulaSignal(Signal):
 
     def __init__(self, low_bound, high_bound, formula="(x0)**2"):
